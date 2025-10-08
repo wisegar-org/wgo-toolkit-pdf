@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WG.PdfTools.MainPage">
+    <Grid RowSpacing="5">
+        <Grid.GestureRecognizers>
+            <DropGestureRecognizer AllowDrop="True"
+                                   DragOver="DropGestureRecognizer_DragOver"
+                                   DragLeave="DropGestureRecognizer_DragLeave"
+                                   Drop="DropGestureRecognizer_Drop" />
+        </Grid.GestureRecognizers>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+               Source="merge_96.png"
+               HeightRequest="96"
+               Aspect="Center"
+               SemanticProperties.Description="Applicazione per unire i PDF" />
+
+        <Label Grid.Row="1"
+        Text="Trascina i documenti PDF da unire"
+        Style="{StaticResource SubHeadline}"
+        SemanticProperties.HeadingLevel="Level2" />
+        
+        <ListView x:Name="FilesToMergeListView"
+                  Margin="5"
+                  Grid.Row="2">
+            <!--<ListView.Header>
+                <Label Text="Elenco documento pdf"
+                       Style="{StaticResource SubHeadline}"
+                       SemanticProperties.HeadingLevel="Level4" />
+            </ListView.Header>-->
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <ViewCell>
+                        <Grid Padding="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Icono -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Nombre archivo -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Botón eliminar -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Icono PDF -->
+                            <Image Grid.Column="0"
+                                   Source="document_96.png"
+                                   HeightRequest="24"
+                                   WidthRequest="24"
+                                   VerticalOptions="Center" />
+
+                            <!-- Nombre archivo -->
+                            <Label Grid.Column="1"
+                                   Text="{Binding}"
+                                   FontAttributes="None"
+                                   VerticalOptions="Center" />
+
+
+                            <ImageButton  Grid.Column="2"
+                                Source="delete_512.png"
+                                Padding="6"
+                                Clicked="OnRemoveFileClicked"
+                                CommandParameter="{Binding}"  
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                MaximumHeightRequest="32"
+                                HeightRequest="24"
+                                WidthRequest="24">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale"  Value="1" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale"  Value="0.5" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="PointerOver" />
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                            </ImageButton>
+                            <!-- Botón eliminar -->
+                            <!--<Button Grid.Column="2"
+                                    Text="Eliminare"                                    
+                                    TextColor="White"
+                                    FontSize="12"
+                                    Padding="5"
+                                    CommandParameter="{Binding}"
+                                    Clicked="OnRemoveFileClicked"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center" />-->
+                           
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <HorizontalStackLayout Grid.Row="3" Margin="5" Spacing="10" HorizontalOptions="Center">
+            <Button x:Name="MergeBtn"
+                    Text="Unifica"
+                    WidthRequest="120"
+                    SemanticProperties.Hint="Fare clic per unire i documenti PDF caricati"
+                    Clicked="OnMergeClicked" />
+
+            <Button x:Name="ClearBtn"
+                    Text="Cancellare"
+                    WidthRequest="120"
+                    Clicked="OnClearClicked"
+                    SemanticProperties.Hint="Fare clic per rimuovere tutti i documenti dall'elenco" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
