@@ -21,10 +21,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>WG.PdfTools</ApplicationTitle>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>org.wisegar.wg.pdftools</ApplicationId>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -52,38 +52,38 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
-	  <ApplicationTitle>WG.PDFToolkit</ApplicationTitle>
-	  <ApplicationId>org.wisegar.wgpdftoolkit</ApplicationId>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>		
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-maccatalyst|AnyCPU'">
-	  <ApplicationTitle>WG.PDFToolkit</ApplicationTitle>
-	  <ApplicationId>org.wisegar.wgpdftoolkit</ApplicationId>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationTitle>WG.PDFToolkit</ApplicationTitle>
-	  <ApplicationId>org.wisegar.wgpdftoolkit</ApplicationId>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
-	  <ApplicationTitle>WG.PDFToolkit</ApplicationTitle>
-	  <ApplicationId>org.wisegar.wgpdftoolkit</ApplicationId>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
-	  <ApplicationTitle>WG.PDFToolkit</ApplicationTitle>
-	  <ApplicationId>org.wisegar.wgpdftoolkit</ApplicationId>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-maccatalyst|AnyCPU'">
-	  <ApplicationTitle>WG.PDFToolkit</ApplicationTitle>
-	  <ApplicationId>org.wisegar.wgpdftoolkit</ApplicationId>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationTitle>WG.PDFToolkit</ApplicationTitle>
-	  <ApplicationId>org.wisegar.wgpdftoolkit</ApplicationId>
+		<ApplicationTitle>Wisegar Toolkit PDF</ApplicationTitle>
+		<ApplicationId>org.wisegar.toolkit-pdf</ApplicationId>
 	</PropertyGroup>
 
 	<ItemGroup>
