@@ -1,1 +1,1 @@
-dotnet build -f -c Release -r win-x64
+dotnet publish -f net9.0-windows10.0.19041.0 -c Release -p:WindowsPackageType=None
