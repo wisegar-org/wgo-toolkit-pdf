@@ -5,6 +5,8 @@
         public AppShell()
         {
             InitializeComponent();
+
+            this.Title = "WGO Toolkit PDF - " + "v"+ VersionTracking.Default.CurrentVersion.ToString();
         }
     }
 }
