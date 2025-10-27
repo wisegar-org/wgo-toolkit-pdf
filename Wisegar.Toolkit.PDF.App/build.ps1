@@ -1,0 +1,1 @@
+dotnet build -f -c Release -r win-x64
