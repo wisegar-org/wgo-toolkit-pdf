@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using WG.PDFToolkit.Logger;
 
 namespace WG.PdfTools
 {
@@ -17,8 +18,9 @@ namespace WG.PdfTools
                     fonts.AddFont("Ubuntu-Medium.ttf", "UbuntuMedium");
                 }).ConfigureEssentials(essentials => essentials.UseVersionTracking());
 
+            builder.Logging.AddFileLoggerProvider(Path.Combine(Environment.CurrentDirectory, "WG_PDFToolkit_Log.txt"));
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

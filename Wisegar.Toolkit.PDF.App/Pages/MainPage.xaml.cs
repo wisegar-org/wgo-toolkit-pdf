@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using WG.PdfTools.Pages; // Assicurati che questo namespace sia corretto se MainPageService è presente
-using System.Collections.Generic; // Aggiunto per List<string> e Any()
+using System.Collections.Generic;
+using Microsoft.Extensions.Logging; // Aggiunto per List<string> e Any()
 
 namespace WG.PdfTools
 {
@@ -9,11 +10,13 @@ namespace WG.PdfTools
     {
         private readonly ObservableCollection<string> items = new ObservableCollection<string>();
         private readonly MainPageService pageService;
+        private readonly ILogger<MainPage> _logger;
 
-        public MainPage()
+        public MainPage(ILogger<MainPage> logger, ILogger<MainPageService> loggerMainPageService)
         {
             InitializeComponent();
-            pageService = new MainPageService();
+            _logger = logger; 
+            pageService = new MainPageService(loggerMainPageService);
             FilesToMergeListView.ItemsSource = items;
 
             // Iscriviti all'evento CollectionChanged di ObservableCollection
@@ -47,21 +50,25 @@ namespace WG.PdfTools
 
         private async void OnMergeClicked(object sender, EventArgs e)
         {
+            try { 
             var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            if (string.IsNullOrEmpty(desktopPath))
+            _logger.LogDebug("Percorso del desktop: {desktopPath}", desktopPath);
+                if (string.IsNullOrEmpty(desktopPath))
             {
                 await Shell.Current.DisplayAlert("WG PDFToolkit", "Impossibile recuperare il percorso del desktop di Windows.", "OK");
-                return;
+                _logger.LogError("Impossibile recuperare il percorso del desktop di Windows.");
+                    return;
             }
             if (items.Count == 0)
             {
                 await Shell.Current.DisplayAlert("WG PDFToolkit", "Nessun file è stato caricato.", "OK");
-                return;
+                _logger.LogError("Nessun file è stato caricato per la fusione.");
+                    return;
             }
             var today = DateTime.Now;
             var outputFile = Path.Combine(desktopPath, $"wg-pdftoolkit-merged-file-{today.Year}{today.Month}{today.Day}{today.Hour}{today.Minute}.pdf");
-
-            var result = pageService.MergeFiles(new List<string>(items), outputFile);
+            _logger.LogDebug("File di output: {outputFile}", outputFile);
+                var result = pageService.MergeFiles(new List<string>(items), outputFile);
 
             if (result == true)
             {
@@ -88,13 +95,20 @@ namespace WG.PdfTools
                     catch (Exception ex)
                     {
                         await Shell.Current.DisplayAlert("Errore", $"Impossibile aprire il file:\n{ex.Message}", "OK");
+                        _logger.LogError("Impossibile aprire il file: {message}", ex.Message);
                     }
 #endif
+                    }
                 }
-            }
             else
             {
                 await Shell.Current.DisplayAlert("INFO WG PDFToolkit", "Impossibile elaborare i file.", "OK");
+                    _logger.LogError("Impossibile elaborare i file durante la fusione.");
+                }
+            }
+            catch(Exception ex) {
+                await Shell.Current.DisplayAlert("INFO WG PDFToolkit", $"Impossibile elaborare i file.Ex. {ex.Message}", "OK");
+                _logger.LogError("Impossibile elaborare i file durante la fusione. Eccezione: {message}", ex.Message);
             }
         }
 
