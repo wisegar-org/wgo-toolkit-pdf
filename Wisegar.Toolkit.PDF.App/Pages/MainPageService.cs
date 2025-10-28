@@ -1,12 +1,17 @@
-﻿using QuestPDF.Fluent;
+﻿using Microsoft.Extensions.Logging; // Aggiunto per il metodo .Any()
+using QuestPDF.Fluent;
 using System.Diagnostics;
-using System.Collections.Generic; // Aggiunto per List<T> e Any()
-using System.Linq; // Aggiunto per il metodo .Any()
 
 namespace WG.PdfTools.Pages
 {
     public class MainPageService
     {
+        private readonly ILogger<MainPageService> _logger;
+
+        public MainPageService(ILogger<MainPageService> logger)
+        {
+            _logger = logger;
+        }
         // Abbiamo modificato il tipo di ritorno per includere messaggi di errore
         public async Task<(List<string> PdfFiles, List<string> Messages)> OnDrop(object sender, DropEventArgs e)
         {
@@ -148,8 +153,8 @@ namespace WG.PdfTools.Pages
 
         public bool MergeFiles(List<string> files, string output)
         {
-            try
-            {
+            //try
+            //{
                 if (files is null || files.Count < 2) return false;
 
                 var documentOperator = DocumentOperation.LoadFile(files[0]);
@@ -159,12 +164,12 @@ namespace WG.PdfTools.Pages
                 }
                 documentOperator.Save(output);
                 return true;
-            }
-            catch (Exception e)
-            {
-                Console.Error.WriteLine(e.ToString());
-                return false;
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    _logger.LogError("Errore durante la fusione dei file PDF: {Message}", e.Message);   
+            //    return false;
+            //}
         }
     }
 }
