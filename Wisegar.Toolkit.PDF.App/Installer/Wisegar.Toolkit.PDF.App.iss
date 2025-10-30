@@ -48,8 +48,8 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Projects\wisegar-org\wgo-toolkit-pdf\Wisegar.Toolkit.PDF.App\publish\net9.0-windows10.0.19041\win10-x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Projects\wisegar-org\wgo-toolkit-pdf\Wisegar.Toolkit.PDF.App\publish\net9.0-windows10.0.19041\win10-x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\wisegar-org\wgo-toolkit-pdf\Wisegar.Toolkit.PDF.App\publish\net9.0-windows10.0.19041.0\win10-x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Projects\wisegar-org\wgo-toolkit-pdf\Wisegar.Toolkit.PDF.App\publish\net9.0-windows10.0.19041.0\win10-x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 
